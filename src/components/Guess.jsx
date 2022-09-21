@@ -1,8 +1,10 @@
 function Guess() {
     return (
         <footer>
-            <input type="text" placeholder="I know it!" />
-            <button type="button">Guess</button>
+            <input type="text" placeholder="I know it!" data-identifier="type-guess" />
+            <button type="button" data-identifier="guess-button">
+                Guess
+            </button>
         </footer>
     );
 }

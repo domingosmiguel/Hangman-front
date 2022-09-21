@@ -1,6 +1,6 @@
 function Letter({ letter }) {
     return (
-        <li>
+        <li data-identifier="letter">
             <p>{letter}</p>
         </li>
     );

@@ -1,48 +1,25 @@
-import React, { useState } from "react";
-import forca0 from "./images/forca0.png";
-import forca1 from "./images/forca1.png";
-import forca2 from "./images/forca2.png";
-import forca3 from "./images/forca3.png";
-import forca4 from "./images/forca4.png";
-import forca5 from "./images/forca5.png";
-import forca6 from "./images/forca6.png";
+import React from "react";
+import axios from "axios";
 
-function Game() {
-    const [error, setError] = useState(0);
-    const [img, setImg] = useState(forca0);
-    function handleClick() {
-        setError(error + 1);
-        changeImg();
+function Game({ img, wordGame, setWord, setWordGame }) {
+    function newWord({ data }) {
+        setWord(() => Object.values(data[0].word).map((letter) => `${letter.toLowerCase()}`));
+        setWordGame(() => Object.values(data[0].word).map(() => "_ "));
     }
-    function changeImg() {
-        switch (error + 1) {
-            case 1:
-                setImg(forca1);
-                break;
-            case 2:
-                setImg(forca2);
-                break;
-            case 3:
-                setImg(forca3);
-                break;
-            case 4:
-                setImg(forca4);
-                break;
-            case 5:
-                setImg(forca5);
-                break;
-            case 6:
-                setImg(forca6);
-                break;
-            default:
-                setImg(forca0);
-                break;
-        }
+    function newWordFailed(error) {
+        console.log(error);
+    }
+    function handleClick() {
+        axios
+            .get("https://random-words-api.vercel.app/word/verb/")
+            .then(newWord)
+            .catch(newWordFailed);
     }
     return (
         <React.Fragment>
-            <img src={img} alt="Game" />
-            <button onClick={handleClick} type="button">
+            <div>{wordGame}</div>
+            <img src={img} alt="Game" data-identifier="game-image" />
+            <button onClick={handleClick} type="button" data-identifier="choose-word">
                 Choose Word
             </button>
         </React.Fragment>
