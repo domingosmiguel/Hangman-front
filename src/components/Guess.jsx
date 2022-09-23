@@ -1,41 +1,7 @@
-function Guess({
-    chooseImg,
-    word,
-    setWordGame,
-    gameStarts,
-    setGameStarts,
-    setGameEnds,
-    setError,
-    clicked,
-    setClicked,
-    compareWords,
-    message,
-    setMessage,
-    handleInputChange,
-}) {
+function Guess({ word, gameStarts, message, handleInputChange, endGame, compareWords }) {
     function handleClick() {
-        let equal = word.length === message.length && word.every((l, i) => l === message[i]);
-        setMessage("");
-        if (equal) {
-            setWordGame(word.map((l) => `${l} `));
-            setGameStarts(false);
-            setGameEnds("win");
-            setClicked(
-                clicked.map(() => {
-                    return true;
-                })
-            );
-        } else {
-            chooseImg(6);
-            setWordGame(word.map((l) => `${l} `));
-            setGameStarts(false);
-            setGameEnds("lose");
-            setClicked(
-                clicked.map(() => {
-                    return true;
-                })
-            );
-        }
+        let equal = compareWords(word, message);
+        endGame(equal);
     }
     return (
         <footer>

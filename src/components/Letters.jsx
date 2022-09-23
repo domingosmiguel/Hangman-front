@@ -8,14 +8,12 @@ function Letters({
     wordGame,
     setWordGame,
     gameStarts,
-    setGameStarts,
-    setGameEnds,
     error,
     setError,
     clicked,
     setClicked,
+    endGame,
     compareWords,
-    setMessage,
 }) {
     return (
         <LettersContainer>
@@ -29,14 +27,12 @@ function Letters({
                     wordGame={wordGame}
                     setWordGame={setWordGame}
                     gameStarts={gameStarts}
-                    setGameStarts={setGameStarts}
-                    setGameEnds={setGameEnds}
                     error={error}
                     setError={setError}
                     clicked={clicked}
                     setClicked={setClicked}
+                    endGame={endGame}
                     compareWords={compareWords}
-                    setMessage={setMessage}
                 />
             ))}
         </LettersContainer>

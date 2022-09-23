@@ -13,7 +13,6 @@ function Game({
     setError,
     clicked,
     setClicked,
-    setMessage,
 }) {
     function newWord({ data }) {
         chooseImg(0);
@@ -26,7 +25,6 @@ function Game({
                 return false;
             })
         );
-        setMessage("");
     }
     function newWordFailed(error) {
         console.log(error);

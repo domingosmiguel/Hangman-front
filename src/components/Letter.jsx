@@ -1,48 +1,41 @@
 function Letter({
-    letter,
     index,
+    letter,
     chooseImg,
     word,
     wordGame,
     setWordGame,
     gameStarts,
-    setGameStarts,
-    setGameEnds,
     error,
     setError,
     clicked,
     setClicked,
+    endGame,
     compareWords,
-    setMessage,
 }) {
     function handleClick() {
         let gotItRight = false;
         const newClicked = [...clicked];
         newClicked[index] = true;
         setClicked(newClicked);
-        setWordGame(
-            word.map((l, index) => {
-                if (l === letter) {
-                    gotItRight = true;
-                    return `${l} `;
-                }
-                return wordGame[index];
-            })
-        );
+        const newWordGame = word.map((l, index) => {
+            if (l === letter) {
+                gotItRight = true;
+                return `${l} `;
+            }
+            return wordGame[index];
+        });
+        setWordGame(newWordGame);
         if (!gotItRight) {
             setError(error + 1);
             chooseImg(error + 1);
             if (error + 1 === 6) {
-                chooseImg(6);
-                setWordGame(word.map((l) => `${l} `));
-                setGameStarts(false);
-                setGameEnds("lose");
-                setClicked(
-                    clicked.map(() => {
-                        return true;
-                    })
-                );
-                setMessage("");
+                endGame(false);
+            }
+        } else {
+            const win = compareWords(word, newWordGame);
+            if (win) {
+                endGame(win);
             }
         }
     }

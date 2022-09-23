@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Alphabet } from "./database/Database";
 
 import Game from "./components/Game.jsx";
@@ -56,29 +56,27 @@ function App() {
                 break;
         }
     }
-    useEffect(() => {
-        if (gameStarts) {
-            const win =
-                word.length === wordGame.length &&
-                Object.values(word).every((l, i) => l === wordGame[i][0]);
-            if (win) {
-                setWordGame(word.map((l) => `${l} `));
-                setGameStarts(false);
-                setGameEnds("win");
-                setClicked(
-                    clicked.map(() => {
-                        return true;
-                    })
-                );
-                setMessage("");
-            }
+    function endGame(victory) {
+        setGameStarts(false);
+        setWordGame(word.map((l) => `${l} `));
+        setClicked(
+            clicked.map(() => {
+                return true;
+            })
+        );
+        setMessage("");
+        if (victory) {
+            setGameEnds("win");
+        } else {
+            chooseImg(6);
+            setGameEnds("lose");
         }
-    }, [gameStarts, word, wordGame, clicked]);
-    // function compareWords(word1, word2) {
-    //     return (
-    //         word1.length === word2.length && Object.values(word1).every((l, i) => l === word2[i][0])
-    //     );
-    // }
+    }
+    function compareWords(word1, word2) {
+        return (
+            word1.length === word2.length && Object.values(word1).every((l, i) => l === word2[i][0])
+        );
+    }
     return (
         <Content>
             <section>
@@ -94,7 +92,6 @@ function App() {
                     setError={setError}
                     clicked={clicked}
                     setClicked={setClicked}
-                    setMessage={setMessage}
                 />
                 <Letters
                     chooseImg={chooseImg}
@@ -102,28 +99,20 @@ function App() {
                     wordGame={wordGame}
                     setWordGame={setWordGame}
                     gameStarts={gameStarts}
-                    setGameStarts={setGameStarts}
-                    setGameEnds={setGameEnds}
                     error={error}
                     setError={setError}
                     clicked={clicked}
                     setClicked={setClicked}
-                    setMessage={setMessage}
+                    endGame={endGame}
+                    compareWords={compareWords}
                 />
                 <Guess
-                    chooseImg={chooseImg}
                     word={word}
-                    setWordGame={setWordGame}
                     gameStarts={gameStarts}
-                    setGameStarts={setGameStarts}
-                    setGameEnds={setGameEnds}
-                    setError={setError}
-                    clicked={clicked}
-                    setClicked={setClicked}
                     message={message}
-                    setMessage={setMessage}
                     handleInputChange={handleInputChange}
-                    // compareWords={compareWords}
+                    endGame={endGame}
+                    compareWords={compareWords}
                 />
             </section>
         </Content>
