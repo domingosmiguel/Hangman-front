@@ -11,23 +11,19 @@ function Game({
     setGameStarts,
     gameEnds,
     setError,
-    clicked,
     setClicked,
 }) {
     function newWord({ data }) {
         chooseImg(0);
-        setWord(() => Object.values(data[0].word).map((letter) => letter.toLowerCase()));
-        setWordGame(() => Object.values(data[0].word).map(() => "_ "));
+        const map = Array.prototype.map;
+        setWord(() => map.call(data[0].word, (letter) => letter.toLowerCase()));
+        setWordGame(() => map.call(data[0].word, () => "_ "));
         setGameStarts(true);
         setError(0);
-        setClicked(
-            clicked.map(() => {
-                return false;
-            })
-        );
+        setClicked("");
     }
     function newWordFailed(error) {
-        console.log(error);
+        alert(error);
     }
     function handleClick() {
         axios

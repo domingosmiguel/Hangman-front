@@ -1,6 +1,6 @@
-function Guess({ word, gameStarts, message, handleInputChange, endGame, compareWords }) {
+function Guess({ word, gameStarts, inputValue, setInputValue, endGame, compareWords }) {
     function handleClick() {
-        let equal = compareWords(word, message);
+        let equal = compareWords(word, inputValue);
         endGame(equal);
     }
     return (
@@ -10,8 +10,8 @@ function Guess({ word, gameStarts, message, handleInputChange, endGame, compareW
                 placeholder="I know it!"
                 data-identifier="type-guess"
                 disabled={!gameStarts ? true : false}
-                onChange={handleInputChange}
-                value={message}
+                onChange={(event) => setInputValue(event.target.value)}
+                value={inputValue}
             />
             <button
                 type="button"

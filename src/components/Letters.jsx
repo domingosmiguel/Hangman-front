@@ -20,7 +20,6 @@ function Letters({
             {Alphabet.map((letter, index) => (
                 <Letter
                     key={index}
-                    index={index}
                     letter={letter}
                     chooseImg={chooseImg}
                     word={word}

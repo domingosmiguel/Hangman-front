@@ -1,5 +1,4 @@
 function Letter({
-    index,
     letter,
     chooseImg,
     word,
@@ -15,9 +14,7 @@ function Letter({
 }) {
     function handleClick() {
         let gotItRight = false;
-        const newClicked = [...clicked];
-        newClicked[index] = true;
-        setClicked(newClicked);
+        setClicked([...clicked, letter]);
         const newWordGame = word.map((l, index) => {
             if (l === letter) {
                 gotItRight = true;
@@ -44,7 +41,7 @@ function Letter({
             className="letters"
             data-identifier="letter"
             onClick={handleClick}
-            disabled={!gameStarts || clicked[index] ? true : false}
+            disabled={!gameStarts || clicked.includes(letter) ? true : false}
         >
             <p>{letter}</p>
         </button>

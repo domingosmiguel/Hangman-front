@@ -14,6 +14,7 @@ import forca5 from "./components/images/forca5.png";
 import forca6 from "./components/images/forca6.png";
 
 import { Content } from "./styles";
+import GlobalStyle from "./globalStyles";
 
 function App() {
     const [img, setImg] = useState(forca0);
@@ -22,15 +23,9 @@ function App() {
     const [gameStarts, setGameStarts] = useState(false);
     const [gameEnds, setGameEnds] = useState("win");
     const [error, setError] = useState(0);
-    const [clicked, setClicked] = useState(
-        Alphabet.map(() => {
-            return false;
-        })
-    );
-    const [message, setMessage] = useState("");
-    function handleInputChange(event) {
-        setMessage(event.target.value);
-    }
+    const [clicked, setClicked] = useState("");
+    const [inputValue, setInputValue] = useState("");
+
     function chooseImg(howManyErrors) {
         switch (howManyErrors) {
             case 1:
@@ -59,12 +54,8 @@ function App() {
     function endGame(victory) {
         setGameStarts(false);
         setWordGame(word.map((l) => `${l} `));
-        setClicked(
-            clicked.map(() => {
-                return true;
-            })
-        );
-        setMessage("");
+        setClicked([...Alphabet]);
+        setInputValue("");
         if (victory) {
             setGameEnds("win");
         } else {
@@ -73,12 +64,11 @@ function App() {
         }
     }
     function compareWords(word1, word2) {
-        return (
-            word1.length === word2.length && Object.values(word1).every((l, i) => l === word2[i][0])
-        );
+        return word1.length === word2.length && word1.every((l, i) => l === word2[i][0]);
     }
     return (
         <Content>
+            <GlobalStyle />
             <section>
                 <Game
                     img={img}
@@ -90,7 +80,6 @@ function App() {
                     setGameStarts={setGameStarts}
                     gameEnds={gameEnds}
                     setError={setError}
-                    clicked={clicked}
                     setClicked={setClicked}
                 />
                 <Letters
@@ -109,8 +98,8 @@ function App() {
                 <Guess
                     word={word}
                     gameStarts={gameStarts}
-                    message={message}
-                    handleInputChange={handleInputChange}
+                    inputValue={inputValue}
+                    setInputValue={setInputValue}
                     endGame={endGame}
                     compareWords={compareWords}
                 />
