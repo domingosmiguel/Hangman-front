@@ -1,41 +1,51 @@
-# **Project 7: InstagramReact**
+# **Project 8: Hangman**
 
-The objective with this project was to...
+The idea was to create a web application for a hangman game so that I could understand better how props works.
 
 ## **Exercised Contents**:
 
+-   Props
 -   Destructuring assignment
 -   Spread operator
--   React Hook (useState)
 -   Styled components
--   Data import from API with axios (get, then, catch)
+-   React Hook (useState)
+-   API integration
 
 ## **Results**:
 
-It is a simple project...
+I'm really satisfied with the results overall, it was really nice to have a deeper sense of how a SPA works. I could also find a public API that provides words from the english vocabulary and it worked perfectly with my web application.
 
 ![GIFs coming soon]()
 
 To show the result, the application was posted on [Vercel](https://hangman-beta-two.vercel.app/)! It was made for desktop navigation only.
 
-## **How To Run**:
+## **How to run**:
 
--   Clone repository
--   Import repository from GitHub to Vercel
--   Deploy
+1. Clone this repository
 
-## **Comments**:
+```
+$ git clone <url>
+```
 
-It wasn't my first project with ReactJS...
+2. Install dependencies
 
--   Good organization of the code...
--   Use of variables...
+```
+$ npm i
+```
+
+3. Run the front-end with
+
+```
+$ npm start
+```
+
+4. Finally access http://localhost:3000 on a browser of your choice (if it doesn't automatically)
 
 ## Built with:
 
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![SASS](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Styled-Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 ![Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
 ![Git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
